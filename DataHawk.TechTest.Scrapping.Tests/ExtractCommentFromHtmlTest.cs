@@ -52,7 +52,6 @@ namespace DataHawk.TechTest.Scrapping.Tests
             Check.That(review.nbComment).Equals(13);
         }
 
-
         [TestMethod]
         public void CheckThat2CommentsOnHtml()
         {
@@ -109,7 +108,7 @@ namespace DataHawk.TechTest.Scrapping.Tests
 
             Check.That(review.verifiedPurchase).Equals(true);
 
-            var expectedDate = new DateTime(2020, 10, 1);
+            var expectedDate = new DateTime(2020, 3, 1);
             Check.That(review.reviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
             Check.That(review.nbComment).Equals(3);

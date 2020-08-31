@@ -30,27 +30,18 @@ namespace DataHawk.TechTest.Scrapping
 
             var dom = new HtmlParser().ParseDocument(data);
 
-
-            var titleElement = dom.QuerySelector("#customer_review-R3PFFVSQGIS9J6 > div:nth-child(2) > a.a-size-base.a-link-normal.review-title.a-color-base.review-title-content.a-text-bold > span");
-            var contentElement =
-                dom.QuerySelector(
-                    "#customer_review-R3PFFVSQGIS9J6 > div.a-row.a-spacing-small.review-data > span > span");
-            var authorElement =
-                dom.QuerySelector(
-                    "#customer_review-R3PFFVSQGIS9J6 > div:nth-child(1) > a > div.a-profile-content > span");
-            var peopleFindHelpfulElement =
-                dom.QuerySelector(
-                    "#customer_review-R3PFFVSQGIS9J6 > div.a-row.review-comments.comments-for-R3PFFVSQGIS9J6 > div > span.cr-vote > div.a-row.a-spacing-small > span");
+            var titleElement = dom.QuerySelector(".review-title");
+            
+            var contentElement = dom.QuerySelector(".review-text-content");
+            var authorElement = dom.QuerySelector(".a-profile-name");
+            var peopleFindHelpfulElement = dom.QuerySelector(".cr-vote");
             var verifiedPurchaseElement =
                 dom.QuerySelector(
-                    "#customer_review-R3PFFVSQGIS9J6 > div.a-row.a-spacing-mini.review-data.review-format-strip > span > a");
-            var reviewDateElement = dom.QuerySelector("#customer_review-R3PFFVSQGIS9J6 > span");
-            var nbCommentElement =
-                dom.QuerySelector(
-                    "#customer_review-R3PFFVSQGIS9J6 > div.a-row.review-comments.comments-for-R3PFFVSQGIS9J6 > div > a > span > span.a-size-base");
+                    "div.a-row.a-spacing-mini.review-data.review-format-strip > span > a > span");
+            var reviewDateElement = dom.QuerySelector(".review-date");
+            var nbCommentElement = dom.QuerySelector(".review-comment-total");
 
-
-            result.title = titleElement.TextContent;
+            result.title = titleElement.TextContent.TrimStart().TrimEnd();
             result.comment = contentElement.TextContent.TrimStart().TrimEnd();
             result.author = authorElement.TextContent;
             result.nbPeopleFindHelpul = this.extractInt32FromString(peopleFindHelpfulElement.TextContent);
