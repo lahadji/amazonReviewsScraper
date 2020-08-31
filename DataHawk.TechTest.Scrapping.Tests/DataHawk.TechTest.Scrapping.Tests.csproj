@@ -9,7 +9,14 @@
   <ItemGroup>
     <None Remove="HtmlData\FullPageOfReview.html" />
     <None Remove="HtmlData\OneComment.html" />
+    <None Remove="HtmlData\ReviewFromUnverifiedPurchase.html" />
     <None Remove="HtmlData\TwoComments.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="HtmlData\ReviewFromUnverifiedPurchase.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

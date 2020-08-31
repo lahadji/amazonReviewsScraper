@@ -41,7 +41,7 @@ namespace DataHawk.TechTest.Scrapping
             result.Comment = contentElement.TextContent.TrimStart().TrimEnd();
             result.Author = authorElement.TextContent;
             result.NbPeopleFindHelpful = this.ExtractInt32FromString(peopleFindHelpfulElement.TextContent);
-            result.VerifiedPurchase = !String.IsNullOrEmpty(verifiedPurchaseElement.TextContent);
+            result.VerifiedPurchase = verifiedPurchaseElement != null;
 
             String dateOfReviewString = reviewDateElement.TextContent;
             dateOfReviewString = dateOfReviewString.Substring(dateOfReviewString.LastIndexOf("on") + 2);

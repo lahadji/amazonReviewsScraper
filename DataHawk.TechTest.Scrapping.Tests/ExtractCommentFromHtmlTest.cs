@@ -140,6 +140,20 @@ namespace DataHawk.TechTest.Scrapping.Tests
             Check.That(listOfHtmlComments).HasSize(10);
         }
 
+        [TestMethod]
+        public void CheckUnverifiedPurchase()
+        {
+            String htmlData = File.ReadAllText($"HtmlData/ReviewFromUnverifiedPurchase.html");
+            DataHawk.TechTest.Scrapping.Scrapper scrapper = new Scrapper();
+            Review review = scrapper.ExtractComment(htmlData);
+
+            Check.That(review.VerifiedPurchase).Equals(false);
+
+
+        }
+
+
+
         //TODO need to find review without verifiedPurchase
     }
 }
