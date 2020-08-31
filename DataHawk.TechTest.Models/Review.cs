@@ -4,13 +4,13 @@ namespace DataHawk.TechTest.Models
 {
     public class Review
     {
-        public string title;
-        public string comment;
-        public string author;
-        public int nbPeopleFindHelpul;
-        public bool verifiedPurchase;
-        public DateTime reviewDate;
-        public int nbComment;
-        public string id { get; set; }
+        public string Title;
+        public string Comment;
+        public string Author;
+        public int NbPeopleFindHelpful;
+        public bool VerifiedPurchase;
+        public DateTime ReviewDate;
+        public int NbComment;
+        public string Id;
     }
 }

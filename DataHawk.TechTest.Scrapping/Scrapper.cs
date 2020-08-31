@@ -21,42 +21,37 @@ namespace DataHawk.TechTest.Scrapping
             return list;
         }
 
-        public Review extractComment(string data)
+        public Review ExtractComment(string data)
         {
             Review result = new Review();
-
-            //HtmlParser parser = new HtmlParser();
-            //IHtmlDocument htmlDocument = parser.ParseDocument(data);
 
             var dom = new HtmlParser().ParseDocument(data);
 
             var titleElement = dom.QuerySelector(".review-title");
-            
             var contentElement = dom.QuerySelector(".review-text-content");
             var authorElement = dom.QuerySelector(".a-profile-name");
             var peopleFindHelpfulElement = dom.QuerySelector(".cr-vote");
-            var verifiedPurchaseElement =
-                dom.QuerySelector(
-                    "div.a-row.a-spacing-mini.review-data.review-format-strip > span > a > span");
+            var verifiedPurchaseElement = dom.QuerySelector("div.a-row.a-spacing-mini.review-data.review-format-strip > span > a > span");
             var reviewDateElement = dom.QuerySelector(".review-date");
             var nbCommentElement = dom.QuerySelector(".review-comment-total");
 
-            result.title = titleElement.TextContent.TrimStart().TrimEnd();
-            result.comment = contentElement.TextContent.TrimStart().TrimEnd();
-            result.author = authorElement.TextContent;
-            result.nbPeopleFindHelpul = this.extractInt32FromString(peopleFindHelpfulElement.TextContent);
-            result.verifiedPurchase = !String.IsNullOrEmpty(verifiedPurchaseElement.TextContent);
-            String dateOfReviewString = reviewDateElement.TextContent;
-            result.reviewDate =
-                extractYearMonthFromString(dateOfReviewString.Substring(dateOfReviewString.LastIndexOf("on") + 2));
+            result.Title = titleElement.TextContent.TrimStart().TrimEnd();
+            result.Comment = contentElement.TextContent.TrimStart().TrimEnd();
+            result.Author = authorElement.TextContent;
+            result.NbPeopleFindHelpful = this.ExtractInt32FromString(peopleFindHelpfulElement.TextContent);
+            result.VerifiedPurchase = !String.IsNullOrEmpty(verifiedPurchaseElement.TextContent);
 
-            result.nbComment = extractInt32FromString(nbCommentElement.TextContent);
+            String dateOfReviewString = reviewDateElement.TextContent;
+            dateOfReviewString = dateOfReviewString.Substring(dateOfReviewString.LastIndexOf("on") + 2);
+            result.ReviewDate = ExtractYearMonthFromString(dateOfReviewString);
+
+            result.NbComment = ExtractInt32FromString(nbCommentElement.TextContent);
 
             return result;
         }
 
         //Need to test but MVP ... so ... YOLO !
-        private Int32 extractInt32FromString(String strToParse)
+        private Int32 ExtractInt32FromString(String strToParse)
         {
             String resultString = Regex.Match(strToParse, @"\d+").Value;
             int extractedInt = Int32.Parse(resultString);
@@ -70,7 +65,7 @@ namespace DataHawk.TechTest.Scrapping
         /// <param name="strToParse"></param>
         /// <returns></returns>
         //Need to test ....
-        private DateTime extractYearMonthFromString(String strToParse)
+        private DateTime ExtractYearMonthFromString(String strToParse)
         {
             DateTime date;
             DateTime.TryParse(strToParse, out date);

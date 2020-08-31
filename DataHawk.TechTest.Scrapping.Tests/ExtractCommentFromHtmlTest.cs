@@ -34,22 +34,22 @@ namespace DataHawk.TechTest.Scrapping.Tests
         {
             String htmlData = File.ReadAllText($"HtmlData/OneComment.html");
             DataHawk.TechTest.Scrapping.Scrapper scrapper = new Scrapper();
-            Review review = scrapper.extractComment(htmlData);
+            Review review = scrapper.ExtractComment(htmlData);
 
-            Check.That(review.title).Equals("FM Radio still not active in the US unlocked version");
+            Check.That(review.Title).Equals("FM Radio still not active in the US unlocked version");
 
-            Check.That(review.comment).StartsWith("Despite Samsung's promises,");
-            Check.That(review.comment).EndsWith("or working update real soon. *");
+            Check.That(review.Comment).StartsWith("Despite Samsung's promises,");
+            Check.That(review.Comment).EndsWith("or working update real soon. *");
 
-            Check.That(review.author).Equals("Ta");
-            Check.That(review.nbPeopleFindHelpul).Equals(158);
+            Check.That(review.Author).Equals("Ta");
+            Check.That(review.NbPeopleFindHelpful).Equals(158);
 
-            Check.That(review.verifiedPurchase).Equals(true);
+            Check.That(review.VerifiedPurchase).Equals(true);
 
             var expectedDate = new DateTime(2020,3,1);
-            Check.That(review.reviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
+            Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
-            Check.That(review.nbComment).Equals(13);
+            Check.That(review.NbComment).Equals(13);
         }
 
         [TestMethod]
@@ -71,22 +71,22 @@ namespace DataHawk.TechTest.Scrapping.Tests
             DataHawk.TechTest.Scrapping.Scrapper scrapper = new Scrapper();
             List<IElement> listOfHtmlComments = scrapper.GetListOfHtmlComment(htmlData);
 
-            var review = scrapper.extractComment(listOfHtmlComments.First().OuterHtml);
+            var review = scrapper.ExtractComment(listOfHtmlComments.First().OuterHtml);
 
-            Check.That(review.title).Equals("FM Radio still not active in the US unlocked version");
+            Check.That(review.Title).Equals("FM Radio still not active in the US unlocked version");
 
-            Check.That(review.comment).StartsWith("Despite Samsung's promises,");
-            Check.That(review.comment).EndsWith("or working update real soon. *");
+            Check.That(review.Comment).StartsWith("Despite Samsung's promises,");
+            Check.That(review.Comment).EndsWith("or working update real soon. *");
 
-            Check.That(review.author).Equals("Ta");
-            Check.That(review.nbPeopleFindHelpul).Equals(159);
+            Check.That(review.Author).Equals("Ta");
+            Check.That(review.NbPeopleFindHelpful).Equals(159);
 
-            Check.That(review.verifiedPurchase).Equals(true);
+            Check.That(review.VerifiedPurchase).Equals(true);
 
             var expectedDate = new DateTime(2020, 3, 1);
-            Check.That(review.reviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
+            Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
-            Check.That(review.nbComment).Equals(13);
+            Check.That(review.NbComment).Equals(13);
         }
 
         [TestMethod]
@@ -96,22 +96,22 @@ namespace DataHawk.TechTest.Scrapping.Tests
             DataHawk.TechTest.Scrapping.Scrapper scrapper = new Scrapper();
             List<IElement> listOfHtmlComments = scrapper.GetListOfHtmlComment(htmlData);
 
-            var review = scrapper.extractComment(listOfHtmlComments[1].OuterHtml);
+            var review = scrapper.ExtractComment(listOfHtmlComments[1].OuterHtml);
 
-            Check.That(review.title).Equals("Incomplete shipment");
+            Check.That(review.Title).Equals("Incomplete shipment");
 
-            Check.That(review.comment).StartsWith("Didn't come with the offered Buds");
-            Check.That(review.comment).EndsWith("What's up!!");
+            Check.That(review.Comment).StartsWith("Didn't come with the offered Buds");
+            Check.That(review.Comment).EndsWith("What's up!!");
 
-            Check.That(review.author).Equals("Ricardo Wagner");
-            Check.That(review.nbPeopleFindHelpul).Equals(134);
+            Check.That(review.Author).Equals("Ricardo Wagner");
+            Check.That(review.NbPeopleFindHelpful).Equals(134);
 
-            Check.That(review.verifiedPurchase).Equals(true);
+            Check.That(review.VerifiedPurchase).Equals(true);
 
             var expectedDate = new DateTime(2020, 3, 1);
-            Check.That(review.reviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
+            Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
-            Check.That(review.nbComment).Equals(3);
+            Check.That(review.NbComment).Equals(3);
         }
 
         //TODO need to find review without verifiedPurchase
