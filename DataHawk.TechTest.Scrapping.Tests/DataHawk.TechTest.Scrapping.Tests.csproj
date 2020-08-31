@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="HtmlData\FullPageOfReview.html" />
     <None Remove="HtmlData\OneComment.html" />
     <None Remove="HtmlData\TwoComments.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="HtmlData\FullPageOfReview.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="HtmlData\OneComment.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

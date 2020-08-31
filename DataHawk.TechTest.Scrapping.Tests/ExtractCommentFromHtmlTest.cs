@@ -46,8 +46,11 @@ namespace DataHawk.TechTest.Scrapping.Tests
 
             Check.That(review.VerifiedPurchase).Equals(true);
 
-            var expectedDate = new DateTime(2020,3,1);
-            Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
+            var expectedDate = new DateTime(2020,3,8);
+            Check.That(review.ReviewDate).
+                IsInSameYearAs(expectedDate).And.
+                IsInSameMonthAs(expectedDate).And.
+                IsInSameDayAs((expectedDate));
 
             Check.That(review.NbComment).Equals(13);
 
@@ -86,8 +89,11 @@ namespace DataHawk.TechTest.Scrapping.Tests
 
             Check.That(review.VerifiedPurchase).Equals(true);
 
-            var expectedDate = new DateTime(2020, 3, 1);
-            Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
+            var expectedDate = new DateTime(2020, 3, 8);
+            Check.That(review.ReviewDate).
+                IsInSameYearAs(expectedDate).And.
+                IsInSameMonthAs(expectedDate).And.
+                IsInSameDayAs(expectedDate);
 
             Check.That(review.NbComment).Equals(13);
             Check.That(review.Star).Equals(1);
@@ -112,11 +118,26 @@ namespace DataHawk.TechTest.Scrapping.Tests
 
             Check.That(review.VerifiedPurchase).Equals(true);
 
-            var expectedDate = new DateTime(2020, 3, 1);
-            Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
+            var expectedDate = new DateTime(2020, 3, 10);
+            Check.That(review.ReviewDate).
+                IsInSameYearAs(expectedDate).And.
+                IsInSameMonthAs(expectedDate).And.
+                IsInSameDayAs(expectedDate);
 
             Check.That(review.NbComment).Equals(3);
             Check.That(review.Star).Equals(3);
+        }
+
+        [TestMethod]
+        public void CheckFullPageOfReviewNbReview()
+        {
+            String htmlData = File.ReadAllText($"HtmlData/FullPageOfReview.html");
+
+            DataHawk.TechTest.Scrapping.Scrapper scrapper = new Scrapper();
+
+            List<IElement> listOfHtmlComments = scrapper.GetListOfHtmlComment(htmlData);
+
+            Check.That(listOfHtmlComments).HasSize(10);
         }
 
         //TODO need to find review without verifiedPurchase

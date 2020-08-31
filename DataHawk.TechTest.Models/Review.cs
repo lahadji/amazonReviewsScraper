@@ -9,7 +9,8 @@ namespace DataHawk.TechTest.Models
         public string Author;
         public int NbPeopleFindHelpful;
         public bool VerifiedPurchase;
-        public DateTime ReviewDate;
+        
+        public DateTime ReviewDate { get; set; }
         public int NbComment;
         public string Id;
         public Int32 Star { get; set; }

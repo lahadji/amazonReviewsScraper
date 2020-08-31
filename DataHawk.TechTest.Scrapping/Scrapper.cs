@@ -45,7 +45,7 @@ namespace DataHawk.TechTest.Scrapping
 
             String dateOfReviewString = reviewDateElement.TextContent;
             dateOfReviewString = dateOfReviewString.Substring(dateOfReviewString.LastIndexOf("on") + 2);
-            result.ReviewDate = ExtractYearMonthFromString(dateOfReviewString);
+            result.ReviewDate = ExtractYearMonthDayFromString(dateOfReviewString);
 
             result.NbComment = ExtractInt32FromString(nbCommentElement.TextContent);
 
@@ -64,12 +64,12 @@ namespace DataHawk.TechTest.Scrapping
         }
 
         /// <summary>
-        /// Only Year + Month
+        /// Only Year + Month + Day
         /// </summary>
         /// <param name="strToParse"></param>
         /// <returns></returns>
         //Need to test ....
-        private DateTime ExtractYearMonthFromString(String strToParse)
+        private DateTime ExtractYearMonthDayFromString(String strToParse)
         {
             DateTime date;
             DateTime.TryParse(strToParse, out date);
