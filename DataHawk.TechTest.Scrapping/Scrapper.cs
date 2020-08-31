@@ -34,7 +34,9 @@ namespace DataHawk.TechTest.Scrapping
             var verifiedPurchaseElement = dom.QuerySelector("div.a-row.a-spacing-mini.review-data.review-format-strip > span > a > span");
             var reviewDateElement = dom.QuerySelector(".review-date");
             var nbCommentElement = dom.QuerySelector(".review-comment-total");
+            var nbStar = dom.QuerySelector(".review-rating");
 
+            
             result.Title = titleElement.TextContent.TrimStart().TrimEnd();
             result.Comment = contentElement.TextContent.TrimStart().TrimEnd();
             result.Author = authorElement.TextContent;
@@ -46,6 +48,8 @@ namespace DataHawk.TechTest.Scrapping
             result.ReviewDate = ExtractYearMonthFromString(dateOfReviewString);
 
             result.NbComment = ExtractInt32FromString(nbCommentElement.TextContent);
+
+            result.Star = (int)Char.GetNumericValue(nbStar.TextContent.First());
 
             return result;
         }

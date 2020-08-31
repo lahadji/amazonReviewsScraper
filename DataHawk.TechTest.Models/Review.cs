@@ -12,5 +12,6 @@ namespace DataHawk.TechTest.Models
         public DateTime ReviewDate;
         public int NbComment;
         public string Id;
+        public Int32 Star { get; set; }
     }
 }

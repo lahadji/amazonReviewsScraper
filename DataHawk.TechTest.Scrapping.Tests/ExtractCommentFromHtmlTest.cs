@@ -50,7 +50,10 @@ namespace DataHawk.TechTest.Scrapping.Tests
             Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
             Check.That(review.NbComment).Equals(13);
+
+            Check.That(review.Star).Equals(1);
         }
+
 
         [TestMethod]
         public void CheckThat2CommentsOnHtml()
@@ -87,6 +90,7 @@ namespace DataHawk.TechTest.Scrapping.Tests
             Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
             Check.That(review.NbComment).Equals(13);
+            Check.That(review.Star).Equals(1);
         }
 
         [TestMethod]
@@ -112,6 +116,7 @@ namespace DataHawk.TechTest.Scrapping.Tests
             Check.That(review.ReviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
             Check.That(review.NbComment).Equals(3);
+            Check.That(review.Star).Equals(3);
         }
 
         //TODO need to find review without verifiedPurchase
