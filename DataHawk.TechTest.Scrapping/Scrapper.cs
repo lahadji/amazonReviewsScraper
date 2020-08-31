@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
@@ -10,6 +12,15 @@ namespace DataHawk.TechTest.Scrapping
 {
     public class Scrapper
     {
+        public List<IElement> GetListOfHtmlComment(string htmlData)
+        {
+            var dom = new HtmlParser().ParseDocument(htmlData);
+
+            var list = dom.QuerySelectorAll(".aok-relative").ToList();
+
+            return list;
+        }
+
         public Review extractComment(string data)
         {
             Review result = new Review();
@@ -74,5 +85,7 @@ namespace DataHawk.TechTest.Scrapping
             DateTime.TryParse(strToParse, out date);
             return date;
         }
+
+
     }
 }

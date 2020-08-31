@@ -8,10 +8,17 @@
 
   <ItemGroup>
     <None Remove="HtmlData\OneComment.html" />
+    <None Remove="HtmlData\TwoComments.html" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="HtmlData\OneComment.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="HtmlData\TwoComments.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
