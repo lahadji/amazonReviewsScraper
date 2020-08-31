@@ -12,6 +12,8 @@ namespace DataHawk.TechTest.Scrapping.Tests
     [TestClass]
     public class ExtractCommentFromHtmlTest
     {
+        //URL : https://www.amazon.com/product-reviews/B082XY23D5
+
         [TestMethod]
         public void TestGetHtmlData()
         {
@@ -45,6 +47,11 @@ namespace DataHawk.TechTest.Scrapping.Tests
             Check.That(review.reviewDate).IsInSameYearAs(expectedDate).And.IsInSameMonthAs(expectedDate);
 
             Check.That(review.nbComment).Equals(13);
+        }
+
+        public void ExtractTwoCommentFromHtml()
+        {
+
         }
     }
 }

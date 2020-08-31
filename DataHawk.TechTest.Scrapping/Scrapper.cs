@@ -34,7 +34,7 @@ namespace DataHawk.TechTest.Scrapping
                 dom.QuerySelector(
                     "#customer_review-R3PFFVSQGIS9J6 > div.a-row.a-spacing-mini.review-data.review-format-strip > span > a");
             var reviewDateElement = dom.QuerySelector("#customer_review-R3PFFVSQGIS9J6 > span");
-            var nbComment =
+            var nbCommentElement =
                 dom.QuerySelector(
                     "#customer_review-R3PFFVSQGIS9J6 > div.a-row.review-comments.comments-for-R3PFFVSQGIS9J6 > div > a > span > span.a-size-base");
 
@@ -47,6 +47,8 @@ namespace DataHawk.TechTest.Scrapping
             String dateOfReviewString = reviewDateElement.TextContent;
             result.reviewDate =
                 extractYearMonthFromString(dateOfReviewString.Substring(dateOfReviewString.LastIndexOf("on") + 2));
+
+            result.nbComment = extractInt32FromString(nbCommentElement.TextContent);
 
             return result;
         }
