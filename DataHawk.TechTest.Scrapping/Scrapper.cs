@@ -12,6 +12,21 @@ namespace DataHawk.TechTest.Scrapping
 {
     public class Scrapper
     {
+        public List<Review> GetReviewFromHtmlPage(String htmldata)
+        {
+            List<IElement> rawCcomment = this.GetListOfHtmlComment(htmldata);
+
+            List<Review> reviews = new List<Review>();
+
+            //TODO : use parallelism
+            foreach (IElement element in rawCcomment)
+            {
+                reviews.Add(this.ExtractComment(element.Html()));
+            }
+
+            return reviews;
+        }
+
         public List<IElement> GetListOfHtmlComment(string htmlData)
         {
             var dom = new HtmlParser().ParseDocument(htmlData);
@@ -36,7 +51,7 @@ namespace DataHawk.TechTest.Scrapping
             var nbCommentElement = dom.QuerySelector(".review-comment-total");
             var nbStar = dom.QuerySelector(".review-rating");
 
-            
+
             result.Title = titleElement.TextContent.TrimStart().TrimEnd();
             result.Comment = contentElement.TextContent.TrimStart().TrimEnd();
             result.Author = authorElement.TextContent;
@@ -52,6 +67,24 @@ namespace DataHawk.TechTest.Scrapping
             result.Star = (int)Char.GetNumericValue(nbStar.TextContent.First());
 
             return result;
+        }
+
+        //Move to scrapper
+        public Int32 GetNbComments(String htmlData)
+        {
+
+            //$('#filter-info-section')
+
+            var dom = new HtmlParser().ParseDocument(htmlData);
+
+            var nbCommentElement = dom.QuerySelector("#filter-info-section");
+
+            int length = nbCommentElement.TextContent.Split().Length;
+            string lastPart = nbCommentElement.TextContent.Split()[length - 2];
+
+            int i = Int32.Parse(lastPart);
+
+            return i;
         }
 
         //Need to test but MVP ... so ... YOLO !
